@@ -13,16 +13,17 @@ const searchPhone = ()=>{
 
 const displaySearchResult = phones =>{
     const searchResult = document.getElementById('search-result');
-    phones.forEach(phone =>{
+    phones.data.forEach(phone =>{
         console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML= `
         <div class="card">
-          <img src="..." class="card-img-top" alt="...">
+          <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title">${phone.phone_name}</h5>
+            <h5>${phone.slug}</h5>
+            <p class="card-text">${phone.phone_name} has a 6.7-inch1 all-screen Super Retina XDR display with ProMotion. The back is textured matte glass, and there's a flat-edge stainless steel band around the frame. </p>
           </div>
         </div>
       </div>
