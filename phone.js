@@ -2,12 +2,27 @@ const searchPhone = ()=>{
     const searchfield = document.getElementById('search-field');
     const searchText = searchfield.value;
     // console.log(searchText);
-    searchText.textContent = '';
+    searchText.value = '';
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displaySearchResult(data));
+    if(searchText=='')
+    {
+        const errorField = document.getElementById('error-field');
+        const p = document.createElement('p');
+        p.innerText = `please enter something`;
+        errorField.appendChild(p);
+        
+    }
+    else{
+        const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displaySearchResult(data));
+        
+    }
+
+}
+const displayError =error =>{
+    document.getElementById('error-msg').style.display='block';
 
 }
 
@@ -32,10 +47,11 @@ const displaySearchResult = phones =>{
 }
 
 const loadPhoneDetails =(phoneID)=>{
-    const url = `https://openapi.programming-hero.com/api/phone/${phoneID}`;
+    const url = `https://openapi.programming-hero.com/api/phone/apple_iphone_13_pro_max-11089`;
+    
     fetch(url)
     .then(res => res.json())
-    .then(data => displayPhoneDetails(data));
+    .then(data => displayPhoneDetails(data.data));
 
 }
 
