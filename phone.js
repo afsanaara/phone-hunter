@@ -1,9 +1,12 @@
+// search field 
 const searchPhone = ()=>{
     const searchfield = document.getElementById('search-field');
     const searchText = searchfield.value;
-    // console.log(searchText);
+    // empty field
     searchText.value = '';
 
+
+    // error message show 
     if(searchText=='')
     {
         const errorField = document.getElementById('error-field');
@@ -22,6 +25,7 @@ const searchPhone = ()=>{
     }
 
 }
+// display error message 
 const displayError = error =>{
     document.getElementById('error-msg').style.display='block';
 
@@ -46,9 +50,9 @@ const displaySearchResult = phones =>{
       searchResult.appendChild(div);
     }) 
 }
-
+// deatils show 
 const loadPhoneDetails =(phoneID)=>{
-    const url = `https://openapi.programming-hero.com/api/phone/apple_iphone_13_pro_max-11089`;
+    const url = `https://openapi.programming-hero.com/api/phone/${phoneID}`; //not showing image, name ,id. showing undefined there
     
     fetch(url)
     .then(res => res.json())
@@ -65,7 +69,7 @@ const displayPhoneDetails = phone =>{
     div.innerHTML=`
     <img src="${phone.image}" class="card-img-top w-50" alt="...">
             <div class="card-body">
-              <h5 class="card-title">${phone.phone_name}</h5>
+              <h5 class="card-title">${phone.phone_name}</h5> 
               <h5>${phone.slug}</h5>
               <p class="card-text">${phone.phone_name} has a 6.7-inch1 all-screen Super Retina XDR display with ProMotion. The back is textured matte glass, and there's a flat-edge stainless steel band around the frame.</p>
               <a href="#" class="btn btn-primary">Details</a>
