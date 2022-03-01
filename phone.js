@@ -18,7 +18,7 @@ const displaySearchResult = phones =>{
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML= `
-        <div class="card">
+        <div onclick="" class="card">
           <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="...">
           <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
@@ -30,4 +30,8 @@ const displaySearchResult = phones =>{
       `;
       searchResult.appendChild(div);
     }) 
+}
+
+const loadPhoneDetails =()=>{
+    
 }
