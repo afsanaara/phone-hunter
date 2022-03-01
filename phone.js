@@ -18,10 +18,11 @@ const searchPhone = ()=>{
         .then(res => res.json())
         .then(data => displaySearchResult(data));
         
+        
     }
 
 }
-const displayError =error =>{
+const displayError = error =>{
     document.getElementById('error-msg').style.display='block';
 
 }
