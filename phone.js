@@ -13,7 +13,7 @@ const searchPhone = ()=>{
 
 const displaySearchResult = phones =>{
     const searchResult = document.getElementById('search-result');
-    for(const phone of phones){
+    phones.forEach(phone =>{
         console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col');
@@ -28,5 +28,5 @@ const displaySearchResult = phones =>{
       </div>
       `;
       searchResult.appendChild(div);
-    } 
+    }) 
 }
