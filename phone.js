@@ -1,43 +1,35 @@
-// search field 
-const searchPhone = ()=>{
-    const searchfield = document.getElementById('search-field');
-    const searchText = searchfield.value;
-    // empty field
-    searchText.value = '';
+// search field
+const searchPhone = () => {
+  const searchfield = document.getElementById("search-field");
+  const searchText = searchfield.value;
+  // empty field
+  searchText.value = "";
 
+  // error message show
+  if (searchText == "") {
+    const errorField = document.getElementById("error-field");
+    const p = document.createElement("p");
+    p.innerText = `please enter something`;
+    errorField.appendChild(p);
+  } else {
+    const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => displaySearchResult(data));
+  }
+};
+// display error message
+const displayError = (error) => {
+  document.getElementById("error-msg").style.display = "block";
+};
 
-    // error message show 
-    if(searchText=='')
-    {
-        const errorField = document.getElementById('error-field');
-        const p = document.createElement('p');
-        p.innerText = `please enter something`;
-        errorField.appendChild(p);
-        
-    }
-    else{
-        const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
-        fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data));
-        
-        
-    }
-
-}
-// display error message 
-const displayError = error =>{
-    document.getElementById('error-msg').style.display='block';
-
-}
-
-const displaySearchResult = phones =>{
-    const searchResult = document.getElementById('search-result');
-    phones.data.forEach(phone =>{
-        console.log(phone);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML= `
+const displaySearchResult = (phones) => {
+  const searchResult = document.getElementById("search-result");
+  phones.data.forEach((phone) => {
+    console.log(phone);
+    const div = document.createElement("div");
+    div.classList.add("col");
+    div.innerHTML = `
         <div onclick="loadPhoneDetails()" class="card">
           <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="...">
           <div class="card-body">
@@ -47,26 +39,25 @@ const displaySearchResult = phones =>{
         </div>
       </div>
       `;
-      searchResult.appendChild(div);
-    }) 
-}
-// deatils show 
-const loadPhoneDetails =(phoneID)=>{
-    const url = `https://openapi.programming-hero.com/api/phone/${phoneID}`; //not showing image, name ,id. showing undefined there
-    
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayPhoneDetails(data.data));
+    searchResult.appendChild(div);
+  });
+};
+// deatils show
+const loadPhoneDetails = (phoneID) => {
+  const url = `https://openapi.programming-hero.com/api/phone/${phoneID}`; //not showing image, name ,id. showing undefined there
 
-}
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayPhoneDetails(data.data));
+};
 
-const displayPhoneDetails = phone =>{
-    console.log(phone);
-    const phoneDetails = document.getElementById('phone-details');
-    phoneDetails.textContent='';
-    const div = document.createElement('div');
-    div.classList.add('card');
-    div.innerHTML=`
+const displayPhoneDetails = (phone) => {
+  console.log(phone);
+  const phoneDetails = document.getElementById("phone-details");
+  phoneDetails.textContent = "";
+  const div = document.createElement("div");
+  div.classList.add("card");
+  div.innerHTML = `
     <img src="${phone.image}" class="card-img-top w-50" alt="...">
             <div class="card-body">
               <h5 class="card-title">${phone.phone_name}</h5> 
@@ -75,7 +66,5 @@ const displayPhoneDetails = phone =>{
               <a href="#" class="btn btn-primary">Details</a>
             </div>
     `;
-    phoneDetails.appendChild(div);
-    
-}
-
+  phoneDetails.appendChild(div);
+};
