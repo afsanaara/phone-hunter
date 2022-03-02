@@ -63,7 +63,7 @@ searchResult.innerHTML = "";
 
 const loadPhoneDetails = (slug) => {
 console.log(slug)
-  const url = `https://openapi.programming-hero.com/api/phone/${slug}`; //not showing image, name ,id. showing undefined there
+  const url = `https://openapi.programming-hero.com/api/phone/${slug}`; 
   
   fetch(url)
   .then(res => res.json())
