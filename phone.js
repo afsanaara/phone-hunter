@@ -27,7 +27,7 @@ const displayError = error =>{
   document.getElementById('error-msg').style.display='block';
 
 }
-
+//showing result
 const displaySearchResult = phones => {
 const resultTitle = document.getElementById('result-title');
 
